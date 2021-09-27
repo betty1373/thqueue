@@ -77,10 +77,13 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a1091a81de9d674b44d146e9b23b8b38d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#a1091a81de9d674b44d146e9b23b8b38d">container_type</a> = Container</td></tr>
+<tr class="memdesc:a1091a81de9d674b44d146e9b23b8b38d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The container type.  <a href="classthqueue.html#a1091a81de9d674b44d146e9b23b8b38d">More...</a><br /></td></tr>
 <tr class="separator:a1091a81de9d674b44d146e9b23b8b38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19ba7871afbd96bf98c27dc1094333c8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#a19ba7871afbd96bf98c27dc1094333c8">value_type</a> = T</td></tr>
+<tr class="memdesc:a19ba7871afbd96bf98c27dc1094333c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data type.  <a href="classthqueue.html#a19ba7871afbd96bf98c27dc1094333c8">More...</a><br /></td></tr>
 <tr class="separator:a19ba7871afbd96bf98c27dc1094333c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2926cf4d9d892ed3a4351132fc44fb2c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#a2926cf4d9d892ed3a4351132fc44fb2c">size_type</a> = typename Container::size_type</td></tr>
+<tr class="memdesc:a2926cf4d9d892ed3a4351132fc44fb2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of data.  <a href="classthqueue.html#a2926cf4d9d892ed3a4351132fc44fb2c">More...</a><br /></td></tr>
 <tr class="separator:a2926cf4d9d892ed3a4351132fc44fb2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -98,26 +101,32 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab490f70f382f1370a6c96bcf2a55d783"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classthqueue.html#a2926cf4d9d892ed3a4351132fc44fb2c">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#ab490f70f382f1370a6c96bcf2a55d783">size</a> () const</td></tr>
 <tr class="separator:ab490f70f382f1370a6c96bcf2a55d783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7840eb495a0f10f7188a5d81e9dcfde6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#a7840eb495a0f10f7188a5d81e9dcfde6">put</a> (<a class="el" href="classthqueue.html#a19ba7871afbd96bf98c27dc1094333c8">value_type</a> val)</td></tr>
+<tr class="memdesc:a7840eb495a0f10f7188a5d81e9dcfde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking Put data into queue.  <a href="classthqueue.html#a7840eb495a0f10f7188a5d81e9dcfde6">More...</a><br /></td></tr>
 <tr class="separator:a7840eb495a0f10f7188a5d81e9dcfde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac35b792ce6d3cb3c292511e0a55adf46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#ac35b792ce6d3cb3c292511e0a55adf46">try_put</a> (<a class="el" href="classthqueue.html#a19ba7871afbd96bf98c27dc1094333c8">value_type</a> val)</td></tr>
+<tr class="memdesc:ac35b792ce6d3cb3c292511e0a55adf46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-Blocking Put data into queue.  <a href="classthqueue.html#ac35b792ce6d3cb3c292511e0a55adf46">More...</a><br /></td></tr>
 <tr class="separator:ac35b792ce6d3cb3c292511e0a55adf46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a8daba0d3e9644ce0310b2f36865012"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#a2a8daba0d3e9644ce0310b2f36865012">get</a> (<a class="el" href="classthqueue.html#a19ba7871afbd96bf98c27dc1094333c8">value_type</a> *val)</td></tr>
+<tr class="memdesc:a2a8daba0d3e9644ce0310b2f36865012"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a value from the queue with blocking, while queue is empty by pointer.  <a href="classthqueue.html#a2a8daba0d3e9644ce0310b2f36865012">More...</a><br /></td></tr>
 <tr class="separator:a2a8daba0d3e9644ce0310b2f36865012"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3a84f5335b09f2fb42a014307986a32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classthqueue.html#a19ba7871afbd96bf98c27dc1094333c8">value_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#ab3a84f5335b09f2fb42a014307986a32">get</a> ()</td></tr>
+<tr class="memdesc:ab3a84f5335b09f2fb42a014307986a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a value from the queue with blocking, while queue is empty.  <a href="classthqueue.html#ab3a84f5335b09f2fb42a014307986a32">More...</a><br /></td></tr>
 <tr class="separator:ab3a84f5335b09f2fb42a014307986a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b6c585a7b9719a82f5f1a5a52420f32"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#a9b6c585a7b9719a82f5f1a5a52420f32">try_get</a> (<a class="el" href="classthqueue.html#a19ba7871afbd96bf98c27dc1094333c8">value_type</a> *val)</td></tr>
+<tr class="memdesc:a9b6c585a7b9719a82f5f1a5a52420f32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a value from the queue without blocking.  <a href="classthqueue.html#a9b6c585a7b9719a82f5f1a5a52420f32">More...</a><br /></td></tr>
 <tr class="separator:a9b6c585a7b9719a82f5f1a5a52420f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:a0014c97d26fc1e85afc5c7e7464bf3bf"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="classthqueue.html#a2926cf4d9d892ed3a4351132fc44fb2c">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classthqueue.html#a0014c97d26fc1e85afc5c7e7464bf3bf">MAX_CAPACITY</a> = std::numeric_limits&lt;<a class="el" href="classthqueue.html#a2926cf4d9d892ed3a4351132fc44fb2c">size_type</a>&gt;::max()</td></tr>
+<tr class="memdesc:a0014c97d26fc1e85afc5c7e7464bf3bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum capacity.  <a href="classthqueue.html#a0014c97d26fc1e85afc5c7e7464bf3bf">More...</a><br /></td></tr>
 <tr class="separator:a0014c97d26fc1e85afc5c7e7464bf3bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T, class Container = std::deque&lt;T&gt;&gt;<br />
 class thqueue&lt; T, Container &gt;</h3>
 
-<p>A thread-safe queue for inter-thread communication. This is a lockinq queue with blocking operations. The <a class="el" href="classthqueue.html#ab3a84f5335b09f2fb42a014307986a32">get()</a> operations can always block on an empty queue, but have variations for non-blocking (try_get) and bounded-time blocking (try_get_for, try_get_until). </p><dl class="section user"><dt></dt><dd>The default queue has a capacity that is unbounded in the practical sense, limited by available memory. In this mode the object will not block when placing values into the queue. A capacity can bet set with the construtor or, at any time later by calling the <a class="el" href="classthqueue.html#ae6fc29c655995c37eeac4f92b6e0362d">capacity(size_type)</a> method. Using this latter method, the capacity can be set to an amount smaller than the current size of the queue. In that case all put's to the queue will block until the number of items are removed from the queue to bring the size below the new capacity. </dd></dl>
+<p>A thread-safe queue for inter-thread communication. This is a lockinq queue with blocking operations. The <a class="el" href="classthqueue.html#ab3a84f5335b09f2fb42a014307986a32" title="Retrieve a value from the queue with blocking, while queue is empty.">get()</a> operations can always block on an empty queue, but have variations for non-blocking (try_get) and bounded-time blocking (try_get_for, try_get_until). </p><dl class="section user"><dt></dt><dd>The default queue has a capacity that is unbounded in the practical sense, limited by available memory. In this mode the object will not block when placing values into the queue. A capacity can bet set with the construtor or, at any time later by calling the <a class="el" href="classthqueue.html#ae6fc29c655995c37eeac4f92b6e0362d">capacity(size_type)</a> method. Using this latter method, the capacity can be set to an amount smaller than the current size of the queue. In that case all put's to the queue will block until the number of items are removed from the queue to bring the size below the new capacity. </dd></dl>
 <dl class="section user"><dt></dt><dd>Note that the queue uses move semantics to place items into the queue and remove items from the queue. This means that the type, T, of the data held by the queue only needs to follow move semantics; not copy semantics. In addition, this means that copies of the value will <em>not</em> be left in the queue. This is especially useful when creating queues of shared pointers, as the "dead" part of the queue will not hold onto a reference count after the item has been removed from the queue.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -140,7 +149,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The underlying container type to use for the queue. </p>
+
+<p>The container type. </p>
 
 </div>
 </div>
@@ -157,7 +167,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The type used to specify number of items in the container. </p>
+
+<p>Number of data. </p>
 
 </div>
 </div>
@@ -174,7 +185,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The type of items to be held in the queue. </p>
+
+<p>Data type. </p>
 
 </div>
 </div>
@@ -203,7 +215,6 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructs a queue with the maximum capacity. </p>
 
 </div>
 </div>
@@ -232,12 +243,6 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructs a queue with the specified capacity. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cap</td><td>The maximum number of items that can be placed in the queue. The minimum capacity is 1. </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -266,7 +271,6 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Gets the capacity of the queue. </p><dl class="section return"><dt>Returns</dt><dd>The maximum number of elements before the queue is full. </dd></dl>
 
 </div>
 </div>
@@ -295,7 +299,6 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Sets the capacity of the queue. Note that the capacity can be set to a value smaller than the current size of the queue. In that event, all calls to <a class="el" href="classthqueue.html#a7840eb495a0f10f7188a5d81e9dcfde6">put()</a> will block until a suffucuent number </p>
 
 </div>
 </div>
@@ -323,7 +326,6 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Determine if the queue is empty. </p><dl class="section return"><dt>Returns</dt><dd><em>true</em> if there are no elements in the queue, <em>false</em> if there are any items in the queue. </dd></dl>
 
 </div>
 </div>
@@ -351,7 +353,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieve a value from the queue. If the queue is empty, this will block indefinitely until a value is added to the queue by another thread, </p><dl class="section return"><dt>Returns</dt><dd>The value removed from the queue </dd></dl>
+
+<p>Retrieve a value from the queue with blocking, while queue is empty. </p>
 
 </div>
 </div>
@@ -380,12 +383,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Retrieve a value from the queue. If the queue is empty, this will block indefinitely until a value is added to the queue by another thread, </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">val</td><td>Pointer to a variable to receive the value. </td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>Retrieve a value from the queue with blocking, while queue is empty by pointer. </p>
 
 </div>
 </div>
@@ -414,12 +413,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Put an item into the queue. If the queue is full, this will block the caller until items are removed bringing the size less than the capacity. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">val</td><td>The value to add to the queue. </td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>Blocking Put data into queue. </p>
 
 </div>
 </div>
@@ -447,7 +442,6 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Gets the number of items in the queue. </p><dl class="section return"><dt>Returns</dt><dd>The number of items in the queue. </dd></dl>
 
 </div>
 </div>
@@ -476,13 +470,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Attempts to remove a value from the queue without blocking. If the queue is currently empty, this will return immediately with a failure, otherwise it will get the next value and return it. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">val</td><td>Pointer to a variable to receive the value. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><em>true</em> if a value was removed from the queue, <em>false</em> if the queue is empty. </dd></dl>
+
+<p>Retrieve a value from the queue without blocking. </p>
 
 </div>
 </div>
@@ -511,13 +500,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Non-blocking attempt to place an item into the queue. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">val</td><td>The value to add to the queue. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><em>true</em> if the item was added to the queue, <em>false</em> if the item was not added because the queue is currently full. </dd></dl>
+
+<p>Non-Blocking Put data into queue. </p>
 
 </div>
 </div>
@@ -543,7 +527,8 @@ template&lt;typename T , class Container  = std::deque&lt;T&gt;&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>The maximum capacity of the queue. </p>
+
+<p>Maximum capacity. </p>
 
 </div>
 </div>
