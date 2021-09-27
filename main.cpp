@@ -1,16 +1,9 @@
 #include "thqueue.hpp"
 #include <atomic>
 #include <chrono>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <errno.h>
 #include <iostream>
 #include <mutex>
-#include <pthread.h>
 #include <sstream>
-#include <thread>
-#include <unistd.h>
 
 /// @brief  bounded queue
 thqueue<std::string> q(1000);
@@ -74,25 +67,18 @@ int main(int argc, char **argv)
     }
 
     std::cout << "test 1 consumer and " << n << " producers" << std::endl;
-
     std::vector<std::thread> threads;
-
     char *in = NULL;
     size_t sz;
 
 /// @brief one consumer 
     threads.emplace_back(std::thread(&consumer_thread));
-     threads.emplace_back(std::thread(&consumer_thread));
 
 /// @brief many producers
     for (int i = 0; i < n; i++)
         threads.emplace_back(std::thread(&producer_thread));
 
     while ((puts("Enter (for info or ^D for exit)"), getline(&in, &sz, stdin)) > 0) {
-#if 0
-    q->enqueue(in, q);
-    in = NULL;
-#endif
     }
     stop = true;
     std::cout << "Wait all threads" << std::endl;
