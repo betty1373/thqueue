@@ -40,165 +40,115 @@ template <typename T, class Container=std::deque<T>>
 class thqueue
 {
 public:
-	/** The underlying container type to use for the queue. */
-	using container_type = Container;
-	/** The type of items to be held in the queue. */
-	using value_type = T;
-	/** The type used to specify number of items in the container. */
-	using size_type = typename Container::size_type;
 
-	/** The maximum capacity of the queue. */
+/// @brief The container type
+	using container_type = Container;
+/// @brief Data type 
+	using value_type = T;
+/// @brief Number of data
+	using size_type = typename Container::size_type;
+/// @brief Maximum capacity 
 	static constexpr size_type MAX_CAPACITY = std::numeric_limits<size_type>::max();
 
 private:
-	mutable std::mutex lock_;
-	/** Condition get signaled when item added to empty queue */
-	std::condition_variable notEmptyCond_;
-	/** Condition gets signaled then item removed from full queue */
-	std::condition_variable notFullCond_;
-	/** The capacity of the queue */
-	size_type cap_;
-	/** The actual STL container to hold data */
-	std::queue<T,Container> que_;
+	mutable std::mutex m_lock;
+/// @brief Condition that queue is not empty
+	std::condition_variable m_notEmptyCond;
+/// @brief Condition that queue is not full
+	std::condition_variable m_notFullCond;
+/// @brief Capacity
+	size_type m_capacity;
+/// @brief STL container to hold data 
+	std::queue<T,Container> m_queue;
 
-	/** Simple, scope-based lock guard */
 	using guard = std::lock_guard<std::mutex>;
-	/** General purpose guard */
 	using unique_guard = std::unique_lock<std::mutex>;
 
 public:
-	/**
-	 * Constructs a queue with the maximum capacity.
-	 */
-	thqueue() : cap_(MAX_CAPACITY) {}
-	/**
-	 * Constructs a queue with the specified capacity.
-	 * @param cap The maximum number of items that can be placed in the
-	 *  		  queue. The minimum capacity is 1.
-	 */
-	explicit thqueue(size_t cap) : cap_(std::max<size_type>(cap, 1)) {}
-	/**
-	 * Determine if the queue is empty.
-	 * @return @em true if there are no elements in the queue, @em false if
-	 *  	   there are any items in the queue.
-	 */
+	thqueue() : m_capacity(MAX_CAPACITY) {}
+
+/// @brief 
+	explicit thqueue(size_t cap) : m_capacity(std::max<size_type>(cap, 1)) {}
+
 	bool empty() const {
-		guard g(lock_);
-		return que_.empty();
+		guard g(m_lock);
+		return m_queue.empty();
 	}
-	/**
-	 * Gets the capacity of the queue.
-	 * @return The maximum number of elements before the queue is full.
-	 */
+
 	size_type capacity() const {
-		guard g(lock_);
-		return cap_;
+		guard g(m_lock);
+		return m_capacity;
 	}
-	/**
-	 * Sets the capacity of the queue.
-	 * Note that the capacity can be set to a value smaller than the current
-	 * size of the queue. In that event, all calls to put() will block until
-	 * a suffucuent number
-	 */
+
 	void capacity(size_type cap) {
-		guard g(lock_);
-		cap_ = cap;
+		guard g(m_lock);
+		m_capacity = cap;
 	}
-	/**
-	 * Gets the number of items in the queue.
-	 * @return The number of items in the queue.
-	 */
+	
 	size_type size() const {
-		guard g(lock_);
-		return que_.size();
+		guard g(m_lock);
+		return m_queue.size();
 	}
-	/**
-	 * Put an item into the queue.
-	 * If the queue is full, this will block the caller until items are
-	 * removed bringing the size less than the capacity.
-	 * @param val The value to add to the queue.
-	 */
+/// @brief Blocking Put data into queue
 	void put(value_type val) {
-		unique_guard g(lock_);
-		if (que_.size() >= cap_)
-			notFullCond_.wait(g, [this]{return que_.size() < cap_;});
-        bool wasEmpty = que_.empty();
-		que_.emplace(std::move(val));
+		unique_guard g(m_lock);
+		if (m_queue.size() >= m_capacity)
+			m_notFullCond.wait(g, [this]{return m_queue.size() < m_capacity;});
+        bool wasEmpty = m_queue.empty();
+		m_queue.emplace(std::move(val));
 		if (wasEmpty) {
 			g.unlock();
-			notEmptyCond_.notify_one();
+			m_notEmptyCond.notify_one();
 		}
 	}
-	/**
-	 * Non-blocking attempt to place an item into the queue.
-	 * @param val The value to add to the queue.
-	 * @return @em true if the item was added to the queue, @em false if the
-	 *  	   item was not added because the queue is currently full.
-	 */
+/// @brief Non-Blocking Put data into queue
 	bool try_put(value_type val) {
-		unique_guard g(lock_);
-		size_type n = que_.size();
-		if (n >= cap_)
+		unique_guard g(m_lock);
+		size_type n = m_queue.size();
+		if (n >= m_capacity)
 			return false;
-		que_.emplace(std::move(val));
+		m_queue.emplace(std::move(val));
 		if (n == 0) {
 			g.unlock();
-			notEmptyCond_.notify_one();
+			m_notEmptyCond.notify_one();
 		}
 		return true;
 	}
-	/**
-	 * Retrieve a value from the queue.
-	 * If the queue is empty, this will block indefinitely until a value is
-	 * added to the queue by another thread,
-	 * @param val Pointer to a variable to receive the value.
-	 */
+/// @brief Retrieve a value from the queue with blocking, while queue is empty by pointer
 	void get(value_type* val) {
-		unique_guard g(lock_);
-		if (que_.empty())
-			notEmptyCond_.wait(g, [this]{return !que_.empty();});
-		*val = std::move(que_.front());
-		que_.pop();
-		if (que_.size() == cap_-1) {
+		unique_guard g(m_lock);
+		if (m_queue.empty())
+			m_notEmptyCond.wait(g, [this]{return !m_queue.empty();});
+		*val = std::move(m_queue.front());
+		m_queue.pop();
+		if (m_queue.size() == m_capacity-1) {
 			g.unlock();
-			notFullCond_.notify_one();
+			m_notFullCond.notify_one();
 		}
 	}
-	/**
-	 * Retrieve a value from the queue.
-	 * If the queue is empty, this will block indefinitely until a value is
-	 * added to the queue by another thread,
-	 * @return The value removed from the queue
-	 */
+/// @brief Retrieve a value from the queue with blocking, while queue is empty
 	value_type get() {
-		unique_guard g(lock_);
-		if (que_.empty())
-			notEmptyCond_.wait(g, [this]{return !que_.empty();});
-		value_type val = std::move(que_.front());
-		que_.pop();
-		if (que_.size() == cap_-1) {
+		unique_guard g(m_lock);
+		if (m_queue.empty())
+			m_notEmptyCond.wait(g, [this]{return !m_queue.empty();});
+		value_type val = std::move(m_queue.front());
+		m_queue.pop();
+		if (m_queue.size() == m_capacity-1) {
 			g.unlock();
-			notFullCond_.notify_one();
+			m_notFullCond.notify_one();
 		}
 		return val;
 	}
-	/**
-	 * Attempts to remove a value from the queue without blocking.
-	 * If the queue is currently empty, this will return immediately with a
-	 * failure, otherwise it will get the next value and return it.
-	 * @param val Pointer to a variable to receive the value.
-	 * @return @em true if a value was removed from the queue, @em false if
-	 *  	   the queue is empty.
-	 */
+/// @brief Retrieve a value from the queue without blocking
 	bool try_get(value_type* val) {
-		unique_guard g(lock_);
-		if (que_.empty())
+		unique_guard g(m_lock);
+		if (m_queue.empty())
 			return false;
-		*val = std::move(que_.front());
-		que_.pop();
-		if (que_.size() == cap_-1) {
+		*val = std::move(m_queue.front());
+		m_queue.pop();
+		if (m_queue.size() == m_capacity-1) {
 			g.unlock();
-			notFullCond_.notify_one();
+			m_notFullCond.notify_one();
 		}
 		return true;
 	}
